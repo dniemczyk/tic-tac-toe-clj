@@ -10,3 +10,9 @@
  (fact "does not exist if nither has all fields"
    (triple-winner? [:o :x :o]) => nil
    (triple-winner? [:x :x :o]) => nil))
+
+(facts "About the triples colection"
+  (fact "the first triple is the first horizontal row"
+    (triples [1 2 3
+              4 5 6
+              7 8 9]) => [1 2 3]))
