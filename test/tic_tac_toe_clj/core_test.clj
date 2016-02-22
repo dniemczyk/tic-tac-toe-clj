@@ -4,12 +4,12 @@
 
 (facts "A triple winer"
  (fact "is x if all fields in the tripple are x"
-   (triple-winner? [:x :x :x]) => :x)
+   (triple-winner [:x :x :x]) => :x)
  (fact "is o if all fields in the tripple are o"
-   (triple-winner? [:o :o :o]) => :o)
+   (triple-winner [:o :o :o]) => :o)
  (fact "does not exist if nither has all fields"
-   (triple-winner? [:o :x :o]) => nil
-   (triple-winner? [:x :x :o]) => nil))
+   (triple-winner [:o :x :o]) => nil
+   (triple-winner [:x :x :o]) => nil))
 
 (facts "About the triples colection"
   (let [empty-board [1 2 3

@@ -3,7 +3,7 @@
 (ns tic-tac-toe-clj.core
   (:gen-class))
 
-(defn triple-winner? [triple]
+(defn triple-winner [triple]
   (cond
     (every? #{:x} triple) :x
     (every? #{:o} triple) :o))
