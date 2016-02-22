@@ -20,4 +20,10 @@
     (fact "the second horizontal"
       (triples empty-board) => (contains [[4 5 6]]))
     (fact "the third horizontal"
-      (triples empty-board) => (contains [[7 8 9]]))))
+      (triples empty-board) => (contains [[7 8 9]]))
+    (fact "the first vertical"
+      (triples empty-board) => (contains [[1 4 7]]))
+    (fact "the second vertical"
+      (triples empty-board) => (contains [[2 5 8]]))
+    (fact "the third vertical"
+      (triples empty-board) => (contains [[3 6 9]]))))
