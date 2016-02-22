@@ -11,7 +11,7 @@
 (defn triples
   "Splits the board into a collection of winnig triples"
   [board]
-  (subvec board 0 3))
+  (partition-all 3 board))
 
 (defn -main
   "I don't do a whole lot ... yet."

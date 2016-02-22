@@ -12,7 +12,12 @@
    (triple-winner? [:x :x :o]) => nil))
 
 (facts "About the triples colection"
-  (fact "the first triple is the first horizontal row"
-    (triples [1 2 3
-              4 5 6
-              7 8 9]) => [1 2 3]))
+  (let [empty-board [1 2 3
+                     4 5 6
+                     7 8 9]]
+    (fact "the first horizontal"
+      (triples empty-board) => (contains [[1 2 3]]))
+    (fact "the second horizontal"
+      (triples empty-board) => (contains [[4 5 6]]))
+    (fact "the third horizontal"
+      (triples empty-board) => (contains [[7 8 9]]))))
