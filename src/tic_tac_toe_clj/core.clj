@@ -11,16 +11,16 @@
 (defn triples
   "Splits the board into a collection of winnig triples"
   [board]
-  (letfn [(horizontal-triples     [x] (partition-all 3 x))
-          (first-vertical-triple  [x] (take-nth 3 x))
-          (second-vertical-triple [x] (take-nth 3 (drop 1 x)))
-          (third-vertical-triple  [x] (take-nth 3 (drop 2 x)))]
+  (letfn [(rows [x] (partition-all 3 x))
+          (first-column  [x] (take-nth 3 x))
+          (second-column [x] (take-nth 3 (drop 1 x)))
+          (third-column  [x] (take-nth 3 (drop 2 x)))]
     (concat
-     (horizontal-triples board)
+     (rows board)
      (list
-      (first-vertical-triple  board)
-      (second-vertical-triple board)
-      (third-vertical-triple  board)))))
+      (first-column  board)
+      (second-column board)
+      (third-column  board)))))
 
 (defn -main
   "I don't do a whole lot ... yet."
