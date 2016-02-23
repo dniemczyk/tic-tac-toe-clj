@@ -17,14 +17,12 @@
           (third-column  [x] (take-nth 3 (drop 2 x)))
           (top-left-diagonal  [x] (take-nth 4 x))
           (top-right-diagonal [x] (take-nth 2 (drop-last 2 (drop 2 x))))]
-    (concat
-     (rows board)
-     (list
-      (first-column  board)
-      (second-column board)
-      (third-column  board)
-      (top-left-diagonal  board)
-      (top-right-diagonal board)))))
+    (concat (rows board)
+            (list (first-column  board)
+                  (second-column board)
+                  (third-column  board)
+                  (top-left-diagonal  board)
+                  (top-right-diagonal board)))))
 
 (defn -main
   "I don't do a whole lot ... yet."
