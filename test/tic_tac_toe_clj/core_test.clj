@@ -11,7 +11,7 @@
    (triple-winner [:o :x :o]) => nil
    (triple-winner [:x :x :o]) => nil))
 
-(facts "About the triples colection"
+(facts "The triples colection has"
   (let [empty-board [1 2 3
                      4 5 6
                      7 8 9]]
@@ -26,4 +26,8 @@
     (fact "the second vertical"
       (triples empty-board) => (contains [[2 5 8]]))
     (fact "the third vertical"
-      (triples empty-board) => (contains [[3 6 9]]))))
+      (triples empty-board) => (contains [[3 6 9]]))
+    (fact "the top left botom right diagonal"
+      (triples empty-board) => (contains [[1 5 9]]))
+    (fact "the top right botom left diagonal"
+      (triples empty-board) => (contains [[3 5 7]]))))
