@@ -34,12 +34,12 @@
 
 (facts "About winner"
   (fact "is X if x-player has a winning tripple first"
-    (let [x-winner-board [:x  :o  nil
-                          :o  :x  :o
-                          nil :o  :x]]
+    (let [x-winner-board [:x :o  3
+                          :o :x :o
+                           7 :o :x]]
       (winner x-winner-board) => :x))
   (fact "is O if o-player has a winning tripple first"
-    (let [o-winner-board [nil :x :o
-                          :x  :o :x
-                          :o  :x :x]]
+    (let [o-winner-board [ 1 :x :o
+                          :x :o :x
+                          :o :x :x]]
       (winner o-winner-board) => :o)))
