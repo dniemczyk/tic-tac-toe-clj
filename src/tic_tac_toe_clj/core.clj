@@ -36,6 +36,17 @@
     (upper-case (subs (str k) 1))
     k))
 
+(defn board->printable [board]
+  (let [rows (partition-all 3 board)
+        nth-row-str (fn [x] (string/join " | " (nth rows x)))]
+    ["-------------"
+     (str "| " (nth-row-str 0) " |")
+     "-------------"
+     (str "| " (nth-row-str 1) " |")
+     "-------------"
+     (str "| " (nth-row-str 2) " |")
+     "-------------"]))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]

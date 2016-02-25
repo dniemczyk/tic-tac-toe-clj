@@ -62,3 +62,16 @@
   (fact "does nothing with numbers"
     (capitalize-keyword 1)   => 1
     (capitalize-keyword 502) => 502))
+
+(facts "About printable board"
+  (fact "returs a board of numbers for the initial board"
+    (let [initial-board [1 2 3
+                         4 5 6
+                         7 8 9]]
+      (board->printable initial-board) => ["-------------"
+                                           "| 1 | 2 | 3 |"
+                                           "-------------"
+                                           "| 4 | 5 | 6 |"
+                                           "-------------"
+                                           "| 7 | 8 | 9 |"
+                                           "-------------"])))
