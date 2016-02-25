@@ -47,6 +47,9 @@
      (str "| " (nth-row-str 2) " |")
      "-------------"]))
 
+(defn print-board [board]
+  (map println (board->printable board)))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
