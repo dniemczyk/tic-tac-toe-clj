@@ -27,6 +27,9 @@
 (defn winner [board]
   (first (filter #{:o :x} (map triple-winner (triples board)))))
 
+(defn board-full? [board]
+  (every? #{:x :o} board))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]

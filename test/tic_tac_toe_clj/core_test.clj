@@ -43,3 +43,13 @@
                           :x :o :x
                           :o :x :x]]
       (winner o-winner-board) => :o)))
+
+(facts "About board"
+  (fact "is full when all fields have an X or an O"
+    (board-full? [:x :o :x
+                  :x :o :x
+                  :o :x :o]) => true)
+  (fact "is not full when at least one field empty"
+    (board-full? [:x  2 :x
+                  :x :o :x
+                  :o :x :o]) => false))
