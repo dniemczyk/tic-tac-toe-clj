@@ -38,7 +38,9 @@
 
 (defn board->printable [board]
   (let [rows (partition-all 3 board)
-        nth-row-str (fn [x] (string/join " | " (nth rows x)))]
+        nth-row-str (fn [x] (->> (nth rows x)
+                                 (map capitalize-keyword)
+                                 (string/join " | ")))]
     ["-------------"
      (str "| " (nth-row-str 0) " |")
      "-------------"
