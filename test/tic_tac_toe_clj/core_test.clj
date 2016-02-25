@@ -31,3 +31,15 @@
       (triples empty-board) => (contains [[1 5 9]]))
     (fact "the top right botom left diagonal"
       (triples empty-board) => (contains [[3 5 7]]))))
+
+(facts "About winner"
+  (fact "is X if x-player has a winning tripple first"
+    (let [x-winner-board [:x  :o  nil
+                          :o  :x  :o
+                          nil :o  :x]]
+      (winner x-winner-board) => :x))
+  (fact "is O if o-player has a winning tripple first"
+    (let [o-winner-board [nil :x :o
+                          :x  :o :x
+                          :o  :x :x]]
+      (winner o-winner-board) => :o)))

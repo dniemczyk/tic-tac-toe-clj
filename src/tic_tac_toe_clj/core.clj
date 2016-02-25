@@ -24,6 +24,9 @@
                   (top-left-diagonal  board)
                   (top-right-diagonal board)))))
 
+(defn winner [board]
+  (first (filter #{:o :x} (map triple-winner (triples board)))))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
