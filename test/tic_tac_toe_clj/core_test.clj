@@ -45,6 +45,10 @@
       (winner o-winner-board) => :o)))
 
 (facts "About board"
+  (fact "initial board is compromised of numbers from 1 to 9"
+    initial-board => [1 2 3
+                      4 5 6
+                      7 8 9])
   (fact "is full when all fields have an X or an O"
     (board-full? [:x :o :x
                   :x :o :x

@@ -50,6 +50,8 @@
 (defn print-board [board]
   (map println (board->printable board)))
 
+(def initial-board (vec (range 1 10)))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
