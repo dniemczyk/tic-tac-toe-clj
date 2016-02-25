@@ -1,6 +1,7 @@
 ;;;; Tic-Tac-Toe in Clojure
 ;;;; ----------------------
 (ns tic-tac-toe-clj.core
+  (:require [clojure.string :as string :refer [upper-case]])
   (:gen-class))
 
 (defn triple-winner [triple]
@@ -29,6 +30,11 @@
 
 (defn board-full? [board]
   (every? #{:x :o} board))
+
+(defn capitalize-keyword [k]
+  (if (keyword? k)
+    (upper-case (subs (str k) 1))
+    k))
 
 (defn -main
   "I don't do a whole lot ... yet."

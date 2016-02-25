@@ -53,3 +53,12 @@
     (board-full? [:x  2 :x
                   :x :o :x
                   :o :x :o]) => false))
+
+(facts "About capitalize keyword"
+  (fact "changes keyword to a capital string"
+    (capitalize-keyword :x) => "X"
+    (capitalize-keyword :o) => "O"
+    (capitalize-keyword :a) => "A")
+  (fact "does nothing with numbers"
+    (capitalize-keyword 1)   => 1
+    (capitalize-keyword 502) => 502))
