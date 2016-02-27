@@ -54,6 +54,9 @@
 
 (def initial-board (vec (range 1 10)))
 
+(defn player-name [x]
+  (#{"X" "O"} (capitalize-keyword x)))
+
 (defn -main
   "Prints the initial board"
   [& args]
