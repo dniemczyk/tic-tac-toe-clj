@@ -94,8 +94,14 @@
                (take-turn (first player-sequence) board)
                (rest player-sequence))))))
 
+(defn new-game? []
+  (println "Do you want to play one more game [Y/n]")
+  (let [response (read-line)]
+    (if (#{"Y" "y"} response) true)))
+
 (defn -main
   "Prints the initial board"
   [& args]
-  (doall
-   (print-board initial-board)))
+  (loop []
+   (play-game)
+   (if (new-game?) (recur))))
