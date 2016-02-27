@@ -55,6 +55,7 @@
 (def initial-board (vec (range 1 10)))
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Prints the initial board"
   [& args]
-  (println "Hello, World!"))
+  (doall
+   (print-board initial-board)))
