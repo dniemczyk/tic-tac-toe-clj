@@ -41,16 +41,16 @@
         string-of-row (fn [x] (->> (nth rows x)
                                    (map capitalize-keyword)
                                    (string/join " | ")))]
-    [(str "---"   "-------"     "---")
-     (str "| " (string-of-row 0) " |")
-     (str "---"   "-------"     "---")
-     (str "| " (string-of-row 1) " |")
-     (str "---"   "-------"     "---")
-     (str "| " (string-of-row 2) " |")
-     (str "---"   "-------"     "---")]))
+    (str "---"   "-------"     "---\n"
+         "| " (string-of-row 0) " |\n"
+         "---"   "-------"     "---\n"
+         "| " (string-of-row 1) " |\n"
+         "---"   "-------"     "---\n"
+         "| " (string-of-row 2) " |\n"
+         "---"   "-------"     "---")))
 
 (defn print-board [board]
-  (map println (board->printable board)))
+  (println (board->printable board)))
 
 (def initial-board (vec (range 1 10)))
 
@@ -86,7 +86,7 @@
   (loop [board initial-board player-sequence player-sequence]
     (let [winning-player (winner board)]
       (println "Current board")
-      (do (print-board board))
+      (print-board board)
       (cond
         winning-player (println "Player" (player-name winning-player) "wins!")
         (board-full? board) (println "Game is a draw.")
