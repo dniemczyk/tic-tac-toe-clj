@@ -82,6 +82,18 @@
                  (player-name player) ":")
         (recur (get-move board))))))
 
+(defn play-game []
+  (loop [board initial-board player-sequence player-sequence]
+    (let [winning-player (winner board)]
+      (println "Current board")
+      (do (print-board board))
+      (cond
+        winning-player (println "Player" (player-name winning-player) "wins!")
+        (board-full? board) (println "Game is a draw.")
+        :else (recur
+               (take-turn (first player-sequence) board)
+               (rest player-sequence))))))
+
 (defn -main
   "Prints the initial board"
   [& args]
