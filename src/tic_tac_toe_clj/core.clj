@@ -38,16 +38,16 @@
 
 (defn board->printable [board]
   (let [rows (partition-all 3 board)
-        nth-row-str (fn [x] (->> (nth rows x)
-                                 (map capitalize-keyword)
-                                 (string/join " | ")))]
-    ["-------------"
-     (str "| " (nth-row-str 0) " |")
-     "-------------"
-     (str "| " (nth-row-str 1) " |")
-     "-------------"
-     (str "| " (nth-row-str 2) " |")
-     "-------------"]))
+        string-of-row (fn [x] (->> (nth rows x)
+                                   (map capitalize-keyword)
+                                   (string/join " | ")))]
+    [(str "---"   "-------"     "---")
+     (str "| " (string-of-row 0) " |")
+     (str "---"   "-------"     "---")
+     (str "| " (string-of-row 1) " |")
+     (str "---"   "-------"     "---")
+     (str "| " (string-of-row 2) " |")
+     (str "---"   "-------"     "---")]))
 
 (defn print-board [board]
   (map println (board->printable board)))
