@@ -70,6 +70,18 @@
 
 (def player-sequence (cycle [:x :o]))
 
+(defn take-turn [player board]
+  (println "Select your move Player"
+           (player-name player)
+           "(press 1-9 and hit ENTER):")
+  (loop [move (get-move board)]
+    (if move
+      (assoc board (dec move) player)
+      (do
+        (println "Move was invalid. Select proper move Player"
+                 (player-name player) ":")
+        (recur (get-move board))))))
+
 (defn -main
   "Prints the initial board"
   [& args]
