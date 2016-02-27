@@ -68,6 +68,8 @@
       input
       nil)))
 
+(def player-sequence (cycle [:x :o]))
+
 (defn -main
   "Prints the initial board"
   [& args]
