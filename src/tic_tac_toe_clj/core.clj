@@ -57,6 +57,17 @@
 (defn player-name [x]
   (#{"X" "O"} (capitalize-keyword x)))
 
+(defn get-move
+  "Queries the user for field input. If the field is already
+   taken or if the user selected an invalid input returns nil."
+  [board]
+  (let [input (try
+                (Integer/parseInt (read-line))
+                (catch Exception e nil))]
+    (if (some #{input} board)
+      input
+      nil)))
+
 (defn -main
   "Prints the initial board"
   [& args]
