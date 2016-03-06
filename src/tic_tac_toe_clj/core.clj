@@ -59,7 +59,7 @@
 
 (defn get-move
   "Queries the user for field input. If the field is already
-   taken or if the user selected an invalid input returns nil."
+  taken or if the user selected an invalid input returns nil."
   [board]
   (let [input (try
                 (Integer/parseInt (read-line))
