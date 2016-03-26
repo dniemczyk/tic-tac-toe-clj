@@ -100,7 +100,7 @@
     (if (#{"Y" "y"} response) true)))
 
 (defn -main
-  "Prints the initial board"
+  "The main game loop"
   [& args]
   (loop []
    (play-game)
