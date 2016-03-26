@@ -1,5 +1,6 @@
 (ns tic-tac-toe-clj.core-test
    (:require [midje.sweet :refer :all]
+             [colorize.core :refer [color]]
              [tic-tac-toe-clj.core :refer :all]))
 
 (facts "A triple winer"
@@ -82,11 +83,13 @@
   (fact "returs a board properly formated for printing"
     (let [some-board [1  2  :x
                       4  :o 6
-                      :x 8  9]]
-      (board->printable some-board) => (str "-------------\n"
-                                            "| 1 | 2 | X |\n"
-                                            "-------------\n"
-                                            "| 4 | O | 6 |\n"
-                                            "-------------\n"
-                                            "| X | 8 | 9 |\n"
-                                            "-------------"))))
+                      :x 8  9]
+          blue-x (color :blue "X")
+          red-o  (color :red  "O")]
+      (board->printable some-board) => (str "--"        "---"      "-----"      "---\n"
+                                            "| "   "1"  " | "  "2"  " | " blue-x " |\n"
+                                            "--"        "---"      "-----"      "---\n"
+                                            "| "   "4"  " | " red-o " | "   "6"  " |\n"
+                                            "--"        "---"      "-----"      "---\n"
+                                            "| " blue-x " | "  "8"  " | "   "9"  " |\n"
+                                            "--"        "---"      "-----"      "---"))))

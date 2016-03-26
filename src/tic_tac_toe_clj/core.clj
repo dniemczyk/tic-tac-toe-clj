@@ -1,7 +1,8 @@
 ;;;; Tic-Tac-Toe in Clojure
 ;;;; ----------------------
 (ns tic-tac-toe-clj.core
-  (:require [clojure.string :as string :refer [upper-case]])
+  (:require [clojure.string :as string :refer [upper-case]]
+            [colorize.core :refer [color]])
   (:gen-class))
 
 (defn triple-winner [triple]
@@ -36,10 +37,17 @@
     (upper-case (subs (str k) 1))
     k))
 
+(defn colorize-players [s]
+  (cond
+    (= "X" s) (color :blue s)
+    (= "O" s) (color :red s)
+    :else s))
+
 (defn board->printable [board]
   (let [rows (partition-all 3 board)
         string-of-row (fn [x] (->> (nth rows x)
                                    (map capitalize-keyword)
+                                   (map colorize-players)
                                    (string/join " | ")))]
     (str "---"   "-------"     "---\n"
          "| " (string-of-row 0) " |\n"
