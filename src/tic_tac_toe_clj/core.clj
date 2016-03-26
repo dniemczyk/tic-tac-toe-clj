@@ -2,7 +2,8 @@
 ;;;; ----------------------
 (ns tic-tac-toe-clj.core
   (:require [clojure.string :as string :refer [upper-case]]
-            [colorize.core :refer [color]])
+            [colorize.core :refer [color]]
+            [clojure.set :as set])
   (:gen-class))
 
 (defn triple-winner [triple]
@@ -59,6 +60,15 @@
 
 (defn print-board [board]
   (println (board->printable board)))
+
+(defn free-fields [board]
+  (filter integer? board))
+
+(defn complementary-fields
+  ([] (complementary-fields nil))
+  ([fields] (complementary-fields fields initial-board))
+  ([fields board]
+   (sort (vec (set/difference (set board) (set fields))))))
 
 (def initial-board (vec (range 1 10)))
 
