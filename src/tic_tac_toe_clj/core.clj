@@ -66,7 +66,9 @@
 
 (defn complementary-fields
   ([] (complementary-fields nil))
-  ([fields] (complementary-fields fields initial-board))
+  ([fields]
+   (let [initial-board (vec (range 1 10))]
+     (complementary-fields fields initial-board)))
   ([fields board]
    (sort (vec (set/difference (set board) (set fields))))))
 
