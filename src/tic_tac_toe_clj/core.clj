@@ -37,7 +37,7 @@
     (upper-case (subs (str k) 1))
     k))
 
-(defn colorize-players [s]
+(defn colorize-player [s]
   (cond
     (= "X" s) (color :blue s)
     (= "O" s) (color :red s)
@@ -47,7 +47,7 @@
   (let [rows (partition-all 3 board)
         string-of-row (fn [x] (->> (nth rows x)
                                    (map capitalize-keyword)
-                                   (map colorize-players)
+                                   (map colorize-player)
                                    (string/join " | ")))]
     (str "---"   "-------"     "---\n"
          "| " (string-of-row 0) " |\n"
