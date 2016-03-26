@@ -65,6 +65,9 @@
 (defn player-name [x]
   (#{"X" "O"} (capitalize-keyword x)))
 
+(defn color-player-name [player]
+  (colorize-player (player-name player)))
+
 (defn get-move
   "Queries the user for field input. If the field is already
   taken or if the user selected an invalid input returns nil."
@@ -80,14 +83,14 @@
 
 (defn take-turn [player board]
   (println "Select your move Player"
-           (player-name player)
+           (color-player-name player)
            "(press 1-9 and hit ENTER):")
   (loop [move (get-move board)]
     (if move
       (assoc board (dec move) player)
       (do
         (println "Move was invalid. Select proper move Player"
-                 (player-name player) ":")
+                 (color-player-name player) ":")
         (recur (get-move board))))))
 
 (defn play-game []
@@ -96,7 +99,7 @@
       (println "Current board")
       (print-board board)
       (cond
-        winning-player (println "Player" (player-name winning-player) "wins!")
+        winning-player (println "Player" (color-player-name winning-player) "wins!")
         (board-full? board) (println "Game is a draw.")
         :else (recur
                (take-turn (first player-sequence) board)
