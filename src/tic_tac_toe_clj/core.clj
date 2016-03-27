@@ -120,14 +120,25 @@
   (let [response (read-line)]
     (if (#{"Y" "y"} response) true)))
 
-(defn get-player-type [player]
-  (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
-  (let [response (read-line)]
-    (if (#{"H" "h" "C" "c"} response) true)))
+(def player-types (atom {:x nil
+                         :o nil}))
+
+(defn reset-player-types [] (swap! player-types assoc :x nil :o nil))
+
+(defn decide-player-type [player]
+  (loop []
+    (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
+    (let [response (read-line)]
+      (if (#{"H" "h" "C" "c"} response)
+        (swap! player-types assoc player response)
+        (do
+          (println "Wrong input, please type H or C.")
+          (recur))))))
 
 (defn decide-player-types []
-  (get-player-type :x)
-  (get-player-type :o))
+  (reset-player-types)
+  (decide-player-type :x)
+  (decide-player-type :o))
 
 (defn -main
   "The main game loop"
