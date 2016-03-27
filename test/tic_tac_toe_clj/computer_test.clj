@@ -7,4 +7,9 @@
  (fact "works for last move"
    (first (closing-move (complementary-fields [1 2]))) => 3
    (first (closing-move (complementary-fields [3 5]))) => 7
-   (first (closing-move (complementary-fields [2 8]))) => 5))
+   (first (closing-move (complementary-fields [2 8]))) => 5)
+ (fact "has a selection of several closing moves"
+   (closing-move (complementary-fields [1 3 5]))
+   => (contains [2 9 7] :in-any-order :gaps-ok)
+   (closing-move (complementary-fields [2 5 9]))
+   => (contains [1 8] :in-any-order :gaps-ok)))
