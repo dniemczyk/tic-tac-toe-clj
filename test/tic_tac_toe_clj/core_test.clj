@@ -105,4 +105,6 @@
                   :x   8   9]) => [2 3 8 9])
   (fact "complementary-fields returns the other fields (free <-> occupied)"
     (complementary-fields [1 2 4 6 8 9]) => [3 5 7]
-    (complementary-fields [2 3 8 9]) => [1 4 5 6 7]))
+    (complementary-fields [2 3 8 9]) => [1 4 5 6 7])
+  (fact "complementary-fields return full board if nothing provided"
+    (complementary-fields) => [1 2 3 4 5 6 7 8 9]))

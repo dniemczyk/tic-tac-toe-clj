@@ -64,15 +64,13 @@
 (defn free-fields [board]
   (filter integer? board))
 
+(def initial-board (vec (range 1 10)))
+
 (defn complementary-fields
-  ([] (complementary-fields nil))
-  ([fields]
-   (let [initial-board (vec (range 1 10))]
-     (complementary-fields fields initial-board)))
+  ([] (complementary-fields []))
+  ([fields] (complementary-fields fields initial-board))
   ([fields board]
    (sort (vec (set/difference (set board) (set fields))))))
-
-(def initial-board (vec (range 1 10)))
 
 (defn player-name [x]
   (#{"X" "O"} (capitalize-keyword x)))
