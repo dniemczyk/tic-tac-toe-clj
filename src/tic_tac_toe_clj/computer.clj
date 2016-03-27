@@ -11,21 +11,21 @@
    [1 5 9] [3 5 7]])
 
 (defn closing-move
-  [free-spaces]
-  (let [occupied-spaces (complementary-fields free-spaces)]
+  [free-fields]
+  (let [occupied-fields (complementary-fields free-fields)]
     (run 6 [next-move]
       (fresh [winning-tripple first-in-row second-in-row]
-        (membero first-in-row    occupied-spaces)
-        (membero second-in-row   occupied-spaces)
-        (membero next-move       free-spaces)
+        (membero first-in-row    occupied-fields)
+        (membero second-in-row   occupied-fields)
+        (membero next-move       free-fields)
         (membero winning-tripple winning-tripples)
         (membero next-move       winning-tripple)
         (membero first-in-row    winning-tripple)
         (membero second-in-row   winning-tripple)
         (!=      first-in-row    second-in-row)))))
 
-(defn play-move [free-spaces]
-  (let [closing-moves (seq (closing-move free-spaces))]
+(defn play-move [free-fields]
+  (let [closing-moves (seq (closing-move free-fields))]
     (if (first closing-moves)
       (rand-nth closing-moves)
-      (rand-nth free-spaces))))
+      (rand-nth free-fields))))
