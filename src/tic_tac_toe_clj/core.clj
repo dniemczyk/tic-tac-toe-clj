@@ -1,7 +1,7 @@
 ;;;; Tic-Tac-Toe in Clojure
 ;;;; ----------------------
 (ns tic-tac-toe-clj.core
-  (:require [clojure.string :as string :refer [upper-case]]
+  (:require [clojure.string :as string :refer [upper-case lower-case]]
             [colorize.core :refer [color]]
             [clojure.set :as set])
   (:gen-class))
@@ -120,6 +120,9 @@
   (let [response (read-line)]
     (if (#{"Y" "y"} response) true)))
 
+(defn string->key [s]
+  (keyword (lower-case s)))
+
 (def player-types (atom {:x nil
                          :o nil}))
 
@@ -130,7 +133,7 @@
     (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
     (let [response (read-line)]
       (if (#{"H" "h" "C" "c"} response)
-        (swap! player-types assoc player response)
+        (swap! player-types assoc player (string->key response))
         (do
           (println "Wrong input, please type H or C.")
           (recur))))))

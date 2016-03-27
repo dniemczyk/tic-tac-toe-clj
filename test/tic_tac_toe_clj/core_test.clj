@@ -68,6 +68,11 @@
     (capitalize-keyword 1)   => 1
     (capitalize-keyword 502) => 502))
 
+(fact "About string to key conversion"
+  (string->key "A") => :a
+  (string->key "x") => :x
+  (string->key "O") => :o)
+
 (facts "About printable board"
   (fact "returs a board of numbers for the initial board"
     (let [initial-board [1 2 3
