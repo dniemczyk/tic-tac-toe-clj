@@ -120,9 +120,20 @@
   (let [response (read-line)]
     (if (#{"Y" "y"} response) true)))
 
+(defn get-player-type [player]
+  (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
+  (let [response (read-line)]
+    (if (#{"H" "h" "C" "c"} response) true)))
+
+(defn decide-player-types []
+  (get-player-type :x)
+  (get-player-type :o))
+
 (defn -main
   "The main game loop"
   [& args]
   (loop []
+    ;; - ask the user to decide what type of player player X and O are
+    (decide-player-types)
     (play-game)
     (if (new-game?) (recur))))
