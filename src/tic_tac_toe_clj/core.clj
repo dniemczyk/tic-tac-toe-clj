@@ -124,5 +124,5 @@
   "The main game loop"
   [& args]
   (loop []
-   (play-game)
-   (if (new-game?) (recur))))
+    (play-game)
+    (if (new-game?) (recur))))
