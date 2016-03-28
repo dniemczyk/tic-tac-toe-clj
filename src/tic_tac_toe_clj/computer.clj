@@ -2,8 +2,7 @@
   "Decision module for a computer player implementation"
   (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :refer :all]
-            [clojure.set :as set]
-            [tic-tac-toe-clj.core :refer [complementary-fields]]))
+            [tic-tac-toe-clj.format :refer [complementary-fields]]))
 
 (def winning-tripples
   [[1 2 3] [4 5 6] [7 8 9]
