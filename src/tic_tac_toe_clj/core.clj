@@ -126,7 +126,7 @@
 (def player-types (atom {:x nil
                          :o nil}))
 
-(defn reset-player-types [] (swap! player-types assoc :x nil :o nil))
+(defn reset-player-types [] (reset! player-types {:x nil :o nil}))
 
 (defn decide-player-type [player]
   (loop []
