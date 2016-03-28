@@ -139,13 +139,11 @@
         (recur (get-move board))))))
 
 (defn take-turn [player board]
-  ;; choose if you should run the computer
-  ;; or the human contolled process
-  (if (= :c (get @player-type player))
-    ;; here the computer player makes his move
-    (make-computer-move player board)
-    ;; here the human player makes his move
-    (make-human-move player board)))
+  (let [computer-player? (= :c (get @player-type player))
+        human-player?    (= :h (get @player-type player))]
+    (if computer-player?
+      (make-computer-move player board)
+      (make-human-move player board))))
 
 (defn play-game []
   (loop [board initial-board player-sequence player-sequence]
