@@ -139,11 +139,10 @@
         (recur (get-move board))))))
 
 (defn take-turn [player board]
-  (let [computer-player? (= :c (get @player-type player))
-        human-player?    (= :h (get @player-type player))]
+  (let [computer-player? (= :c (get @player-type player))]
     (if computer-player?
       (make-computer-move player board)
-      (make-human-move player board))))
+      (make-human-move    player board))))
 
 (defn play-game []
   (loop [board initial-board player-sequence player-sequence]
