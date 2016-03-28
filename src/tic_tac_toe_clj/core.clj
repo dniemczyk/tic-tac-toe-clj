@@ -3,7 +3,8 @@
 (ns tic-tac-toe-clj.core
   (:require [clojure.string :as string :refer [upper-case lower-case]]
             [colorize.core :refer [color]]
-            [clojure.set :as set])
+            [clojure.set :as set]
+            [tic-tac-toe-clj.computer :as computer :refer [play-move]])
   (:gen-class))
 
 (defn triple-winner [triple]
@@ -92,16 +93,25 @@
 (def player-sequence (cycle [:x :o]))
 
 (defn take-turn [player board]
-  (println "Select your move Player"
-           (color-player-name player)
-           "(press 1-9 and hit ENTER):")
-  (loop [move (get-move board)]
-    (if move
-      (assoc board (dec move) player)
-      (do
-        (println "Move was invalid. Select proper move Player"
-                 (color-player-name player) ":")
-        (recur (get-move board))))))
+  ;; choose if you should run the computer
+  ;; or the human contolled process
+  (if (= :c (get @player-types player))
+    ;; here should be the computer controlled process
+    (let [free-fields (free-fields board)
+          move (computer/play-move free-fields)]
+      (assoc board (dec move) player))
+    ;; here runs the human controled process
+    (do
+      (println "Select your move Player"
+               (color-player-name player)
+               "(press 1-9 and hit ENTER):")
+      (loop [move (get-move board)]
+        (if move
+          (assoc board (dec move) player)
+          (do
+            (println "Move was invalid. Select proper move Player"
+                     (color-player-name player) ":")
+            (recur (get-move board))))))))
 
 (defn play-game []
   (loop [board initial-board player-sequence player-sequence]
