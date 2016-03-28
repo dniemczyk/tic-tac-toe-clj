@@ -92,10 +92,39 @@
 
 (def player-sequence (cycle [:x :o]))
 
+(defn new-game? []
+  (println "Do you want to play one more game [Y/n]")
+  (let [response (read-line)]
+    (if (#{"Y" "y"} response) true)))
+
+(defn string->key [s]
+  (keyword (lower-case s)))
+
+(def player-type (atom {:x nil
+                         :o nil}))
+
+(defn reset-player-types [] (reset! player-type {:x nil :o nil}))
+
+(defn decide-player-type [player]
+  (loop []
+    (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
+    (let [response (read-line)
+          response-key (string->key response)]
+      (if (#{"H" "h" "C" "c"} response)
+        (swap! player-type assoc player response-key)
+        (do
+          (println "Wrong input, please type H or C.")
+          (recur))))))
+
+(defn decide-all-player-types []
+  (reset-player-types)
+  (decide-player-type :x)
+  (decide-player-type :o))
+
 (defn take-turn [player board]
   ;; choose if you should run the computer
   ;; or the human contolled process
-  (if (= :c (get @player-types player))
+  (if (= :c (get @player-type player))
     ;; here should be the computer controlled process
     (let [free-fields (free-fields board)
           move (computer/play-move free-fields)]
@@ -124,35 +153,6 @@
         :else (recur
                (take-turn (first player-sequence) board)
                (rest player-sequence))))))
-
-(defn new-game? []
-  (println "Do you want to play one more game [Y/n]")
-  (let [response (read-line)]
-    (if (#{"Y" "y"} response) true)))
-
-(defn string->key [s]
-  (keyword (lower-case s)))
-
-(def player-types (atom {:x nil
-                         :o nil}))
-
-(defn reset-player-types [] (reset! player-types {:x nil :o nil}))
-
-(defn decide-player-type [player]
-  (loop []
-    (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
-    (let [response (read-line)
-          response-key (string->key response)]
-      (if (#{"H" "h" "C" "c"} response)
-        (swap! player-types assoc player response-key)
-        (do
-          (println "Wrong input, please type H or C.")
-          (recur))))))
-
-(defn decide-all-player-types []
-  (reset-player-types)
-  (decide-player-type :x)
-  (decide-player-type :o))
 
 (defn -main
   "The main game loop"
