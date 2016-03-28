@@ -139,7 +139,7 @@
           (println "Wrong input, please type H or C.")
           (recur))))))
 
-(defn decide-player-types []
+(defn decide-all-player-types []
   (reset-player-types)
   (decide-player-type :x)
   (decide-player-type :o))
@@ -149,6 +149,6 @@
   [& args]
   (loop []
     ;; - ask the user to decide what type of player player X and O are
-    (decide-player-types)
+    (decide-all-player-types)
     (play-game)
     (if (new-game?) (recur))))
