@@ -131,9 +131,10 @@
 (defn decide-player-type [player]
   (loop []
     (println "Choose type for player" (color-player-name player) ": (H)uman / (C)omputer")
-    (let [response (read-line)]
+    (let [response (read-line)
+          response-key (string->key response)]
       (if (#{"H" "h" "C" "c"} response)
-        (swap! player-types assoc player (string->key response))
+        (swap! player-types assoc player response-key)
         (do
           (println "Wrong input, please type H or C.")
           (recur))))))
