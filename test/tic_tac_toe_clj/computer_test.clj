@@ -1,6 +1,6 @@
 (ns tic-tac-toe-clj.computer-test
    (:require [midje.sweet :refer :all]
-             [tic-tac-toe-clj.core :refer [complementary-fields]]
+             [tic-tac-toe-clj.format :refer [complementary-fields]]
              [tic-tac-toe-clj.computer :refer :all]))
 
 (facts "closing move"

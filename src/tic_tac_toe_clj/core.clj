@@ -4,6 +4,7 @@
   (:require [clojure.string :as string :refer [upper-case lower-case]]
             [colorize.core :refer [color]]
             [clojure.set :as set]
+            [tic-tac-toe-clj.format :refer [free-fields]]
             [tic-tac-toe-clj.computer :as computer :refer [play-move]])
   (:gen-class))
 
@@ -62,16 +63,7 @@
 (defn print-board [board]
   (println (board->printable board)))
 
-(defn free-fields [board]
-  (filter integer? board))
-
 (def initial-board (vec (range 1 10)))
-
-(defn complementary-fields
-  ([] (complementary-fields []))
-  ([fields] (complementary-fields fields initial-board))
-  ([fields board]
-   (sort (vec (set/difference (set board) (set fields))))))
 
 (defn player-name [x]
   (#{"X" "O"} (capitalize-keyword x)))

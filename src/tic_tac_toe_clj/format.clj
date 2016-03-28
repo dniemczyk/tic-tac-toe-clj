@@ -3,6 +3,9 @@
 
 (def initial-board (vec (range 1 10)))
 
+(defn free-fields [board]
+  (filter integer? board))
+
 (defn complementary-fields
   ([] (complementary-fields []))
   ([fields] (complementary-fields fields initial-board))
