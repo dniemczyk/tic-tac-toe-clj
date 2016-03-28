@@ -121,26 +121,31 @@
   (decide-player-type :x)
   (decide-player-type :o))
 
+(defn make-computer-move [player board]
+  (let [free-fields (free-fields board)
+        move (computer/play-move free-fields)]
+    (assoc board (dec move) player)))
+
+(defn make-human-move [player board]
+  (println "Select your move Player"
+           (color-player-name player)
+           "(press 1-9 and hit ENTER):")
+  (loop [move (get-move board)]
+    (if move
+      (assoc board (dec move) player)
+      (do
+        (println "Move was invalid. Select proper move Player"
+                 (color-player-name player) ":")
+        (recur (get-move board))))))
+
 (defn take-turn [player board]
   ;; choose if you should run the computer
   ;; or the human contolled process
   (if (= :c (get @player-type player))
-    ;; here should be the computer controlled process
-    (let [free-fields (free-fields board)
-          move (computer/play-move free-fields)]
-      (assoc board (dec move) player))
-    ;; here runs the human controled process
-    (do
-      (println "Select your move Player"
-               (color-player-name player)
-               "(press 1-9 and hit ENTER):")
-      (loop [move (get-move board)]
-        (if move
-          (assoc board (dec move) player)
-          (do
-            (println "Move was invalid. Select proper move Player"
-                     (color-player-name player) ":")
-            (recur (get-move board))))))))
+    ;; here the computer player makes his move
+    (make-computer-move player board)
+    ;; here the human player makes his move
+    (make-human-move player board)))
 
 (defn play-game []
   (loop [board initial-board player-sequence player-sequence]
