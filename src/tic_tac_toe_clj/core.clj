@@ -148,7 +148,7 @@
   "The main game loop"
   [& args]
   (loop []
-    ;; - ask the user to decide what type of player player X and O are
+    ;; ask the user to decide what type of player player X and O are
     (decide-all-player-types)
     (play-game)
     (if (new-game?) (recur))))
