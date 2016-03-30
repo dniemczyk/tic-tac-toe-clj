@@ -93,7 +93,7 @@
   (keyword (lower-case s)))
 
 (def player-type (atom {:x nil
-                         :o nil}))
+                        :o nil}))
 
 (defn reset-player-types [] (reset! player-type {:x nil :o nil}))
 
