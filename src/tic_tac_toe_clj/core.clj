@@ -3,7 +3,6 @@
 (ns tic-tac-toe-clj.core
   (:require [clojure.string :as string :refer [upper-case lower-case]]
             [colorize.core :refer [color]]
-            [clojure.set :as set]
             [tic-tac-toe-clj.format :refer [free-fields]]
             [tic-tac-toe-clj.computer :as computer :refer [play-move]])
   (:gen-class))
