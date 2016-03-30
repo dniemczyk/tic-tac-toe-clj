@@ -16,18 +16,17 @@
 (defn triples
   "Splits the board into a collection of winnig triples"
   [board]
-  (letfn [(rows [x] (partition-all 3 x))
-          (first-column  [x] (take-nth 3 x))
-          (second-column [x] (take-nth 3 (drop 1 x)))
-          (third-column  [x] (take-nth 3 (drop 2 x)))
-          (top-left-diagonal  [x] (take-nth 4 x))
-          (top-right-diagonal [x] (take-nth 2 (drop-last 2 (drop 2 x))))]
-    (concat (rows board)
-            (list (first-column  board)
-                  (second-column board)
-                  (third-column  board)
-                  (top-left-diagonal  board)
-                  (top-right-diagonal board)))))
+  (let [rows (partition-all 3 board)
+        first-column  (take-nth 3 board)
+        second-column (take-nth 3 (drop 1 board))
+        third-column  (take-nth 3 (drop 2 board))
+        top-left-diagonal  (take-nth 4 board)
+        top-right-diagonal (take-nth 2 (drop-last 2 (drop 2 board)))]
+    (concat rows (list first-column
+                       second-column
+                       third-column
+                       top-left-diagonal
+                       top-right-diagonal))))
 
 (defn winner [board]
   (first (filter #{:o :x} (map triple-winner (triples board)))))
